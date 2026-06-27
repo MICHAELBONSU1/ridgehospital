@@ -1,0 +1,62 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Supervisor Dashboard - Ridge LMS{% endblock %}
+{% block page_title %}Supervisor Dashboard{% endblock %}
+{% block nav_items %}
+<li><a href="#" class="nav-link active" data-tab-link="pending">Pending</a></li>
+<li><a href="#" class="nav-link" data-tab-link="team">Team Calendar</a></li>
+<li><a href="#" class="nav-link" data-tab-link="history">History</a></li>
+{% endblock %}
+{% block content %}
+<section class="stats-grid">
+    <div class="stat-card warning">
+        <span class="stat-label">Pending Requests</span>
+        <span class="stat-value" id="pendingCount">0</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Today's Requests</span>
+        <span class="stat-value" id="todayCount">0</span>
+    </div>
+    <div class="stat-card success">
+        <span class="stat-label">Team Members</span>
+        <span class="stat-value" id="teamCount">0</span>
+    </div>
+</section>
+
+<div class="tabs">
+    <button class="tab active" data-tab="pending">Pending Requests</button>
+    <button class="tab" data-tab="team">Team Availability</button>
+    <button class="tab" data-tab="history">Approved / Rejected</button>
+</div>
+
+<div class="tab-content active" id="tab-pending">
+    <div class="card">
+        <h3>Pending Leave Requests</h3>
+        <div id="pendingList" class="request-list"></div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-team">
+    <div class="card">
+        <h3>Team Leave Calendar</h3>
+        <div id="teamCalendar" class="request-list"></div>
+    </div>
+    <div class="card">
+        <h3>My Team</h3>
+        <div id="teamList" class="team-grid"></div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-history">
+    <div class="card">
+        <h3>Approved Requests</h3>
+        <div id="approvedList" class="request-list"></div>
+    </div>
+    <div class="card">
+        <h3>Rejected Requests</h3>
+        <div id="rejectedList" class="request-list"></div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/supervisor.js') }}"></script>
+{% endblock %}

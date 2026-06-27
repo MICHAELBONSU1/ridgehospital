@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="app-layout">
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-icon-sm">+</div>
+            <div>
+                <strong>Ridge LMS</strong>
+                <small id="userRole">Employee</small>
+            </div>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+            {% block nav_items %}{% endblock %}
+        </ul>
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar" id="userAvatar">U</div>
+                <div>
+                    <strong id="userName">User</strong>
+                    <small id="userDept">Department</small>
+                </div>
+            </div>
+            <button class="btn btn-ghost btn-sm" id="logoutBtn">Logout</button>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="top-bar">
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <h1 id="pageTitle">{% block page_title %}Dashboard{% endblock %}</h1>
+            <div class="top-bar-actions">
+                <div class="notification-bell" id="notificationBell">
+                    🔔
+                    <span class="badge" id="notifBadge">0</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="notification-panel hidden" id="notificationPanel">
+            <div class="panel-header">
+                <h3>Notifications</h3>
+                <button class="btn btn-ghost btn-sm" id="markAllRead">Mark all read</button>
+            </div>
+            <div id="notificationList" class="notification-list"></div>
+        </div>
+
+        <div class="content-area">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+</div>
+
+<div class="modal hidden" id="modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Modal</h3>
+            <button class="modal-close" id="modalClose">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+{% endblock %}

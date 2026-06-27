@@ -1,0 +1,232 @@
+.splash-screen {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.splash-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transform: scale(1.08);
+    animation: splashKenBurns 12s ease-out forwards;
+}
+
+.splash-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        160deg,
+        #2b260dd1 0%,
+        rgba(65, 52, 23, 0.65) 45%,
+        rgba(73, 62, 2, 0.75) 100%
+    );
+}
+
+.splash-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff;
+    padding: 2rem;
+    max-width: 720px;
+    animation: splashFadeUp 1.2s ease-out both;
+}
+
+.splash-logo {
+    margin-bottom: 1.5rem;
+}
+
+.splash-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto;
+    background: var(--accent);
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    animation: splashPulse 2.5s ease-in-out infinite;
+}
+
+.splash-greeting {
+    font-size: 1.15rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease-out 0.3s forwards;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+}
+
+.splash-title {
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 700;
+    line-height: 1.15;
+    text-shadow: 0 4px 24px rgba(245, 242, 242, 0.35);
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease-out 0.55s forwards;
+    margin-bottom: 0.75rem;
+}
+
+.splash-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    opacity: 0;
+    animation: splashFadeUp 0.8s ease-out 0.8s forwards;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 2.5rem;
+}
+
+.splash-loader {
+    width: 200px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    margin: 0 auto 2rem;
+    overflow: hidden;
+    opacity: 0;
+    animation: splashFadeUp 0.6s ease-out 1.1s forwards;
+}
+
+.splash-loader-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--accent), #fff);
+    border-radius: 3px;
+    animation: splashLoadBar 4s ease-in-out 1.2s forwards;
+}
+
+.splash-enter {
+    opacity: 0;
+    animation: splashFadeUp 0.6s ease-out 1.4s forwards;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    padding: 0.85rem 2.5rem;
+    font-size: 1rem;
+    border-radius: 50px;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.splash-enter:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.splash-footer {
+    position: absolute;
+    bottom: 1.5rem;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+    animation: splashFadeUp 0.8s ease-out 1.6s both;
+}
+
+.splash-divider { opacity: 0.5; }
+
+.splash-screen.exiting {
+    animation: splashExit 0.7s ease-in forwards;
+}
+
+.splash-screen.exiting .splash-content {
+    animation: splashContentExit 0.6s ease-in forwards;
+}
+
+@keyframes splashKenBurns {
+    from { transform: scale(1.12); }
+    to { transform: scale(1.0); }
+}
+
+@keyframes splashFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes splashPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes splashLoadBar {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+
+@keyframes splashExit {
+    to { opacity: 0; }
+}
+
+@keyframes splashContentExit {
+    to {
+        opacity: 0;
+        transform: translateY(-20px) scale(0.98);
+    }
+}
+
+@media (max-width: 480px) {
+    .splash-greeting { letter-spacing: 0.2em; font-size: 0.95rem; }
+    .splash-footer { flex-direction: column; align-items: center; gap: 0.25rem; }
+    .splash-divider { display: none; }
+}
+
+
+
+
+
+/* ===========================
+   Logo
+=========================== */
+
+.splash-logo{
+    width:140px;
+    height:140px;
+    margin:0 auto 25px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:logoFloat 4s ease-in-out infinite;
+}
+
+.logo-image{
+    width:120px;
+    height:120px;
+    object-fit:cover;
+    border-radius:50%;
+    background:#fff;
+    padding:6px;
+    border:4px solid rgba(255,255,255,.85);
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35),
+        0 0 30px rgba(255,255,255,.25);
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}

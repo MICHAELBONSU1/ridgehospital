@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Welcome - Ridge LMS{% endblock %}
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/splash.css') }}">
+{% endblock %}
+{% block body %}
+<div class="splash-screen" id="splashScreen">
+    <div class="splash-bg" style="background-image: url('{{ url_for('static', filename='images/hospital-bg.png') }}');"></div>
+    <div class="splash-overlay"></div>
+
+   <div class="splash-logo">
+    <img src="{{ url_for('static', filename='images/lego.jpg') }}"
+         alt="Ridge Hospital Logo"
+         class="logo-image">
+</div>
+        <p class="splash-greeting">Welcome</p>
+        <h1 class="splash-title">Ridge Leave Management System</h1>
+        <p class="splash-subtitle">Hospital Staff Leave &amp; Workforce Portal</p>
+
+        <div class="splash-loader">
+            <div class="splash-loader-bar"></div>
+        </div>
+
+        <button class="splash-enter btn" id="enterBtn">Enter System</button>
+    </div>
+
+    <footer class="splash-footer">
+        <span>Ridge Hospital</span>
+        <span class="splash-divider">·</span>
+        <span>Secure Staff Portal</span>
+    </footer>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/splash.js') }}"></script>
+{% endblock %}

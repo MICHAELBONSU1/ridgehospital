@@ -1,0 +1,176 @@
+{% extends "dashboard_base.html" %}
+{% block title %}IT Dashboard - Ridge LMS{% endblock %}
+{% block page_title %}IT Administration{% endblock %}
+{% block nav_items %}
+<li><a href="#" class="nav-link active" data-tab-link="users">User Management</a></li>
+<li><a href="#" class="nav-link" data-tab-link="create">Create Account</a></li>
+<li><a href="#" class="nav-link" data-tab-link="audit">Audit Logs</a></li>
+<li><a href="#" class="nav-link" data-tab-link="reports">Reports</a></li>
+{% endblock %}
+{% block content %}
+<section class="stats-grid">
+    <div class="stat-card">
+        <span class="stat-label">Total Users</span>
+        <span class="stat-value" id="totalUsers">0</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Nurses</span>
+        <span class="stat-value" id="totalNurses">0</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Doctors</span>
+        <span class="stat-value" id="totalDoctors">0</span>
+    </div>
+    <div class="stat-card danger">
+        <span class="stat-label">Locked Accounts</span>
+        <span class="stat-value" id="lockedAccounts">0</span>
+    </div>
+</section>
+
+<div class="tabs">
+    <button class="tab active" data-tab="users">All Users</button>
+    <button class="tab" data-tab="create">Create Account</button>
+    <button class="tab" data-tab="audit">Audit & Login Logs</button>
+    <button class="tab" data-tab="reports">User Reports</button>
+</div>
+
+<div class="tab-content active" id="tab-users">
+    <div class="card">
+        <h3>User Management</h3>
+        <div class="table-responsive">
+            <table class="data-table" id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Name</th>
+                        <th>Department</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-create">
+    <div class="card">
+        <h3>Create Employee Account</h3>
+        <form id="createUserForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Employee ID</label>
+                    <input type="text" id="empId" required placeholder="NUR1024">
+                </div>
+                <div class="form-group">
+                    <label>Staff Number</label>
+                    <input type="text" id="staffNumber" required placeholder="SN-NUR1024">
+                </div>
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="username" required placeholder="NUR1024">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Department</label>
+                    <select id="department" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Unit</label>
+                    <select id="unit"></select>
+                </div>
+                <div class="form-group">
+                    <label>Position</label>
+                    <select id="position" required></select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Employment Type</label>
+                    <select id="employmentType">
+                        <option value="Permanent">Permanent</option>
+                        <option value="Contract">Contract</option>
+                        <option value="Locum">Locum</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Supervisor</label>
+                    <select id="supervisor"></select>
+                </div>
+                <div class="form-group">
+                    <label>Role</label>
+                    <select id="role" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Default Password</label>
+                <input type="text" id="defaultPassword" value="Welcome@123">
+                <small>Employee must change on first login.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </form>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-audit">
+    <div class="card">
+        <h3>Login History</h3>
+        <div class="table-responsive">
+            <table class="data-table" id="loginTable">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Success</th>
+                        <th>IP</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <h3>Audit Trail</h3>
+        <div class="table-responsive">
+            <table class="data-table" id="auditTable">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Action</th>
+                        <th>Details</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-reports">
+    <div class="card">
+        <h3>User Reports</h3>
+        <div id="reportsContent" class="reports-grid"></div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/it_admin.js') }}"></script>
+{% endblock %}

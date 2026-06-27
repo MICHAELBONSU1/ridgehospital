@@ -1,0 +1,131 @@
+{% extends "dashboard_base.html" %}
+{% block title %}Employee Dashboard - Ridge LMS{% endblock %}
+{% block page_title %}Employee Dashboard{% endblock %}
+{% block nav_items %}
+<li><a href="#" class="nav-link active" data-tab-link="apply">Apply Leave</a></li>
+<li><a href="#" class="nav-link" data-tab-link="history">History</a></li>
+<li><a href="#" class="nav-link" data-tab-link="profile">Profile</a></li>
+{% endblock %}
+{% block content %}
+<section class="stats-grid" id="statsGrid">
+    <div class="stat-card">
+        <span class="stat-label">Annual Leave Balance</span>
+        <span class="stat-value" id="annualBalance">--</span>
+    </div>
+    <div class="stat-card warning">
+        <span class="stat-label">Pending Requests</span>
+        <span class="stat-value" id="pendingCount">0</span>
+    </div>
+    <div class="stat-card success">
+        <span class="stat-label">Approved</span>
+        <span class="stat-value" id="approvedCount">0</span>
+    </div>
+    <div class="stat-card danger">
+        <span class="stat-label">Rejected</span>
+        <span class="stat-value" id="rejectedCount">0</span>
+    </div>
+</section>
+
+<div class="tabs">
+    <button class="tab active" data-tab="apply">Apply for Leave</button>
+    <button class="tab" data-tab="history">Leave History</button>
+    <button class="tab" data-tab="profile">My Profile</button>
+</div>
+
+<div class="tab-content active" id="tab-apply">
+    <div class="card">
+        <h3>New Leave Application</h3>
+        <form id="leaveForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Leave Type</label>
+                    <select id="leaveType" required></select>
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div class="form-group">
+                    <label>End Date</label>
+                    <input type="date" id="endDate" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Reason</label>
+                <textarea id="leaveReason" rows="3" placeholder="Brief reason for leave..."></textarea>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="saveDraft">Save Draft</button>
+                <button type="submit" class="btn btn-primary">Submit Leave</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-history">
+    <div class="card">
+        <h3>Leave History</h3>
+        <div class="table-responsive">
+            <table class="data-table" id="leaveHistoryTable">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Days</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card">
+        <h3>Leave Balances</h3>
+        <div id="balanceCards" class="balance-grid"></div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-profile">
+    <div class="card">
+        <h3>My Profile</h3>
+        <form id="profileForm">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="profileName" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Employee ID</label>
+                    <input type="text" id="profileEmpId" disabled>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="profileEmail">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" id="profilePhone">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Department</label>
+                    <input type="text" id="profileDept" disabled>
+                </div>
+                <div class="form-group">
+                    <label>Supervisor</label>
+                    <input type="text" id="profileSupervisor" disabled>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Profile</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/employee.js') }}"></script>
+{% endblock %}

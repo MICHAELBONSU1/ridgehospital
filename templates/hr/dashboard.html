@@ -1,0 +1,63 @@
+{% extends "dashboard_base.html" %}
+{% block title %}HR Dashboard - Ridge LMS{% endblock %}
+{% block page_title %}HR Dashboard{% endblock %}
+{% block nav_items %}
+<li><a href="#" class="nav-link active" data-tab-link="pending">Pending Approval</a></li>
+<li><a href="#" class="nav-link" data-tab-link="staff">Staff</a></li>
+<li><a href="#" class="nav-link" data-tab-link="reports">Reports</a></li>
+{% endblock %}
+{% block content %}
+<section class="stats-grid">
+    <div class="stat-card warning">
+        <span class="stat-label">Pending HR Approval</span>
+        <span class="stat-value" id="pendingCount">0</span>
+    </div>
+    <div class="stat-card">
+        <span class="stat-label">Total Staff</span>
+        <span class="stat-value" id="staffCount">0</span>
+    </div>
+</section>
+
+<div class="tabs">
+    <button class="tab active" data-tab="pending">Pending Approval</button>
+    <button class="tab" data-tab="staff">Staff Directory</button>
+    <button class="tab" data-tab="reports">Reports & Analytics</button>
+</div>
+
+<div class="tab-content active" id="tab-pending">
+    <div class="card">
+        <h3>Supervisor-Approved Requests</h3>
+        <div id="pendingList" class="request-list"></div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-staff">
+    <div class="card">
+        <h3>Staff Directory</h3>
+        <div class="table-responsive">
+            <table class="data-table" id="staffTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Employee ID</th>
+                        <th>Department</th>
+                        <th>Unit</th>
+                        <th>Supervisor</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="tab-content" id="tab-reports">
+    <div class="card">
+        <h3>Leave Reports</h3>
+        <div id="reportsContent" class="reports-grid"></div>
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/hr.js') }}"></script>
+{% endblock %}
